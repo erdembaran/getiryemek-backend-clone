@@ -1,0 +1,52 @@
+import Joi from "joi";
+import { Schema, Types, model } from "mongoose";
+
+interface IUser {
+  name: string;
+  surname: string;
+  email: string;
+  password: string;
+  resetToken?: string;
+  resetTokenExpiration?: Date;
+  phone: number;
+  addresses: string[];
+  favRestaurants?: string[];
+  orders?: Types.ObjectId[];
+}
+
+const userSchema = new Schema<IUser>(
+  {
+    name: { type: String, required: true },
+    surname: { type: String, required: true },
+    email: { type: String, required: true },
+    password: { type: String, required: true },
+    resetToken: { type: String, required: false },
+    resetTokenExpiration: { type: Date, required: false },
+    phone: { type: Number, required: true },
+    addresses: { type: [String], required: true },
+    favRestaurants: { type: [String], required: false },
+    orders: { type: [Schema.Types.ObjectId], ref: "Order", required: false },
+  },
+  { timestamps: true }
+);
+
+function validateUser(user: IUser) {
+  const schema = Joi.object({
+    name: Joi.string().required(),
+    surname: Joi.string().required(),
+    email: Joi.string().required(),
+    password: Joi.string().required(),
+    resetToken: Joi.string(),
+    resetTokenExpiration: Joi.date(),
+    phone: Joi.number().required(),
+    addresses: Joi.array().items(Joi.string()).required(),
+    favRestaurants: Joi.array().items(Joi.string()),
+    orders: Joi.array().items(Joi.string()).required(),
+  });
+
+  return schema.validate(user);
+}
+
+const User = model<IUser>("User", userSchema);
+
+module.exports = { User, validateUser };
