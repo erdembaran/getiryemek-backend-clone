@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 const db = require("./config/db");
 import helmet from "helmet";
 import compression from "compression";
+import router from "./routes/auth";
 
 const app: Express = express();
 
@@ -15,6 +16,8 @@ db();
 
 app.use(express.json());
 app.use(cors());
+
+app.use("/api/auth", router);
 
 const PORT = process.env.PORT || 3000;
 

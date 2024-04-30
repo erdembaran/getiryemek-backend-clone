@@ -1,7 +1,7 @@
 import Joi from "joi";
 import { Schema, Types, model } from "mongoose";
 
-interface IUser {
+export interface IUser {
   name: string;
   surname: string;
   email: string;
@@ -30,7 +30,7 @@ const userSchema = new Schema<IUser>(
   { timestamps: true }
 );
 
-function validateRegister(user: IUser) {
+export function validateRegister(user: IUser) {
   const schema = Joi.object({
     name: Joi.string().required(),
     surname: Joi.string().required(),
@@ -44,7 +44,7 @@ function validateRegister(user: IUser) {
   return schema.validate(user);
 }
 
-function validateLogin(user: IUser) {
+export function validateLogin(user: IUser) {
   const schema = Joi.object({
     email: Joi.string().required(),
     password: Joi.string().required(),
@@ -53,6 +53,4 @@ function validateLogin(user: IUser) {
   return schema.validate(user);
 }
 
-const User = model<IUser>("User", userSchema);
-
-module.exports = { User, validateRegister, validateLogin };
+export const User = model<IUser>("User", userSchema);
