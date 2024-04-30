@@ -9,7 +9,7 @@ export interface IUser {
   resetToken?: string;
   resetTokenExpiration?: Date;
   phone: number;
-  addresses: string[];
+  addresses?: string[];
   favRestaurants?: string[];
   orders?: Types.ObjectId[];
 }
@@ -23,7 +23,7 @@ const userSchema = new Schema<IUser>(
     resetToken: { type: String, required: false },
     resetTokenExpiration: { type: Date, required: false },
     phone: { type: Number, required: true },
-    addresses: { type: [String], required: true },
+    addresses: { type: [String], required: false },
     favRestaurants: { type: [String], required: false },
     orders: { type: [Schema.Types.ObjectId], ref: "Order", required: false },
   },
