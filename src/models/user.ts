@@ -30,7 +30,7 @@ const userSchema = new Schema<IUser>(
   { timestamps: true }
 );
 
-function validateUser(user: IUser) {
+function validateRegister(user: IUser) {
   const schema = Joi.object({
     name: Joi.string().required(),
     surname: Joi.string().required(),
@@ -39,9 +39,15 @@ function validateUser(user: IUser) {
     resetToken: Joi.string(),
     resetTokenExpiration: Joi.date(),
     phone: Joi.number().required(),
-    addresses: Joi.array().items(Joi.string()).required(),
-    favRestaurants: Joi.array().items(Joi.string()),
-    orders: Joi.array().items(Joi.string()).required(),
+  });
+
+  return schema.validate(user);
+}
+
+function validateLogin(user: IUser) {
+  const schema = Joi.object({
+    email: Joi.string().required(),
+    password: Joi.string().required(),
   });
 
   return schema.validate(user);
@@ -49,4 +55,4 @@ function validateUser(user: IUser) {
 
 const User = model<IUser>("User", userSchema);
 
-module.exports = { User, validateUser };
+module.exports = { User, validateRegister, validateLogin };
