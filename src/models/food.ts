@@ -6,7 +6,7 @@ export interface IFood {
   description: string;
   price: number;
   imageUrl: string;
-  category: string;
+  category: Types.ObjectId;
   restaurant: Types.ObjectId;
 }
 
@@ -16,7 +16,11 @@ const foodSchema = new Schema<IFood>(
     description: { type: String, required: true },
     price: { type: Number, required: true },
     imageUrl: { type: String, required: true },
-    category: { type: String, required: true },
+    category: {
+      type: Schema.Types.ObjectId,
+      ref: "Category",
+      required: true,
+    },
     restaurant: {
       type: Schema.Types.ObjectId,
       ref: "Restaurant",
@@ -25,18 +29,5 @@ const foodSchema = new Schema<IFood>(
   },
   { timestamps: true }
 );
-
-export function validateFood(food: IFood) {
-  const schema = Joi.object({
-    title: Joi.string().required(),
-    description: Joi.string().required(),
-    price: Joi.number().required(),
-    imageUrl: Joi.string().required(),
-    category: Joi.string().required(),
-    restaurant: Joi.string().required(),
-  });
-
-  return schema.validate(food);
-}
 
 export const Food = model<IFood>("Food", foodSchema);
