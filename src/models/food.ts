@@ -6,7 +6,6 @@ export interface IFood {
   description: string;
   price: number;
   imageUrl: string;
-  foodTags: string[];
   category: string;
   restaurant: Types.ObjectId;
 }
@@ -17,7 +16,6 @@ const foodSchema = new Schema<IFood>(
     description: { type: String, required: true },
     price: { type: Number, required: true },
     imageUrl: { type: String, required: true },
-    foodTags: { type: [String], required: true },
     category: { type: String, required: true },
     restaurant: {
       type: Schema.Types.ObjectId,
@@ -34,7 +32,6 @@ export function validateFood(food: IFood) {
     description: Joi.string().required(),
     price: Joi.number().required(),
     imageUrl: Joi.string().required(),
-    foodTags: Joi.array().items(Joi.string()),
     category: Joi.string().required(),
     restaurant: Joi.string().required(),
   });
