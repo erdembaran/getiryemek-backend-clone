@@ -28,6 +28,19 @@ const userSchema = new Schema<IUser>(
   { timestamps: true }
 );
 
+export function validateUser(user: IUser) {
+  const schema = Joi.object({
+    name: Joi.string().required(),
+    surname: Joi.string().required(),
+    email: Joi.string().required(),
+    phone: Joi.number().required(),
+    addresses: Joi.array().items(Joi.string()),
+    favRestaurants: Joi.array().items(Joi.string()),
+  });
+
+  return schema.validate(user);
+}
+
 export function validateRegister(user: IUser) {
   const schema = Joi.object({
     name: Joi.string().required(),
