@@ -48,4 +48,4 @@ const restaurantSchema = new Schema<IRestaurant>(
   { timestamps: true }
 );
 
-export const Restaruant = model<IRestaurant>("Restaruant", restaurantSchema);
+export const Restaurant = model<IRestaurant>("Restaurant", restaurantSchema);

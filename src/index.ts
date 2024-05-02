@@ -6,6 +6,7 @@ import helmet from "helmet";
 import compression from "compression";
 import authRoutes from "./routes/auth";
 import userRoutes from "./routes/user";
+import restaurantRoutes from "./routes/restaurant";
 
 const app: Express = express();
 
@@ -20,6 +21,7 @@ app.use(cors());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/restaurant", restaurantRoutes);
 
 const PORT = process.env.PORT || 3000;
 
