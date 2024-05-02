@@ -23,7 +23,6 @@ export const put_update_user = async (req: Request, res: Response) => {
     user.email = req.body.email;
     user.phone = req.body.phone;
     user.addresses = req.body.addresses;
-    user.favRestaurants = req.body.favRestaurants;
 
     const updatedUser = await user.save();
     res.send(updatedUser);

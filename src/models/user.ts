@@ -35,7 +35,6 @@ export function validateUser(user: IUser) {
     email: Joi.string().required(),
     phone: Joi.number().required(),
     addresses: Joi.array().items(Joi.string()),
-    favRestaurants: Joi.array().items(Joi.string()),
   });
 
   return schema.validate(user);
