@@ -11,7 +11,6 @@ export interface IUser {
   phone: number;
   addresses?: string[];
   favRestaurants?: string[];
-  orders?: Types.ObjectId[];
 }
 
 const userSchema = new Schema<IUser>(
@@ -25,7 +24,6 @@ const userSchema = new Schema<IUser>(
     phone: { type: Number, required: true },
     addresses: { type: [String], required: false },
     favRestaurants: { type: [String], required: false },
-    orders: { type: [Schema.Types.ObjectId], ref: "Order", required: false },
   },
   { timestamps: true }
 );
