@@ -1,4 +1,3 @@
-import Joi from "joi";
 import { Schema, Types, model } from "mongoose";
 
 export interface IFood {
