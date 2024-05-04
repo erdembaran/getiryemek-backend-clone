@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { Schema, Types, model } from "mongoose";
+import { Schema, model } from "mongoose";
 
 export interface IUser {
   name: string;
