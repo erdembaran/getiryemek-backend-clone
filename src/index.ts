@@ -7,6 +7,7 @@ import compression from "compression";
 import authRoutes from "./routes/auth";
 import userRoutes from "./routes/user";
 import restaurantRoutes from "./routes/restaurant";
+import categoryRoutes from "./routes/category";
 
 const app: Express = express();
 
@@ -22,6 +23,7 @@ app.use(cors());
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/restaurant", restaurantRoutes);
+app.use("/api/category", categoryRoutes);
 
 const PORT = process.env.PORT || 3000;
 
