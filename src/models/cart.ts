@@ -1,4 +1,4 @@
-import Joi, { required } from "joi";
+import Joi from "joi";
 import { Schema, Types, model } from "mongoose";
 
 export interface ICart {
