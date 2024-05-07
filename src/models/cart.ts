@@ -1,4 +1,4 @@
-import Joi from "joi";
+import Joi, { required } from "joi";
 import { Schema, Types, model } from "mongoose";
 
 export interface ICart {
@@ -15,9 +15,8 @@ const cartSchema = new Schema<ICart>(
     user: { type: Schema.Types.ObjectId, ref: "User" },
     foods: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "Food",
-        quantity: { type: Number, required: true },
+        food: { type: Schema.Types.ObjectId, ref: "Food", required: true },
+        quantity: { type: Number, default: 0, required: true },
       },
     ],
   },
