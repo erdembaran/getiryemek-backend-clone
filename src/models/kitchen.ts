@@ -3,7 +3,7 @@ import { Schema, Types, model } from "mongoose";
 export interface IKitchen {
   name: string;
   imageUrl: string;
-  restaurants: Types.ObjectId[];
+  restaurants?: Types.ObjectId[];
 }
 
 const kitchenSchema = new Schema<IKitchen>(

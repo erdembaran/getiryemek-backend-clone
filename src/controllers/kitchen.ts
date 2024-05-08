@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 
 export const get_kitchens = async (req: Request, res: Response) => {
   try {
-    const kitchens = await Kitchen.find();
+    const kitchens = await Kitchen.find().populate("restaurants");
     if (!kitchens) return res.status(404).send("No kitchens found");
     res.send(kitchens);
   } catch (error) {
@@ -11,10 +11,7 @@ export const get_kitchens = async (req: Request, res: Response) => {
   }
 };
 
-export const get_restaurants_by_kitchen = async (
-  req: Request,
-  res: Response
-) => {
+export const get_kitchen = async (req: Request, res: Response) => {
   try {
     const kitchen = await Kitchen.findById(req.params.id).populate(
       "restaurants"

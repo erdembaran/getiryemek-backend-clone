@@ -3,7 +3,12 @@ import { Schema, Types, model } from "mongoose";
 export interface IRestaurant {
   title: string;
   imageUrl: string;
-  foods: Types.ObjectId[];
+  foods: {
+    title: string;
+    description: string;
+    price: number;
+    imageUrl: string;
+  }[];
   openingHours: string;
   isOpen: boolean;
   deliveryMethod: string;
@@ -21,11 +26,12 @@ const restaurantSchema = new Schema<IRestaurant>(
     imageUrl: { type: String, required: true },
     foods: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "Food",
+        title: { type: String, required: true },
+        description: { type: String, required: true },
+        price: { type: Number, required: true },
+        imageUrl: { type: String, required: true },
       },
     ],
-
     openingHours: { type: String, required: true },
     isOpen: { type: Boolean, required: true },
     deliveryMethod: { type: String, required: true },
