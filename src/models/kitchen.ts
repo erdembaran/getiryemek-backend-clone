@@ -1,12 +1,12 @@
 import { Schema, Types, model } from "mongoose";
 
-export interface ICategory {
+export interface IKitchen {
   name: string;
   imageUrl: string;
-  restaurants: { type: Types.ObjectId; ref: "Restaurant" }[];
+  restaurants: Types.ObjectId[];
 }
 
-const cateogorySchema = new Schema<ICategory>(
+const kitchenSchema = new Schema<IKitchen>(
   {
     name: { type: String, required: true },
     imageUrl: { type: String, required: true },
@@ -15,4 +15,4 @@ const cateogorySchema = new Schema<ICategory>(
   { timestamps: true }
 );
 
-export const Category = model<ICategory>("Category", cateogorySchema);
+export const Kitchen = model<IKitchen>("Kitchen", kitchenSchema);

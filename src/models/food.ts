@@ -1,11 +1,10 @@
-import { Schema, Types, model } from "mongoose";
+import { Schema, model } from "mongoose";
 
 export interface IFood {
   title: string;
   description: string;
   price: number;
   imageUrl: string;
-  restaurant: Types.ObjectId;
 }
 
 const foodSchema = new Schema<IFood>(
@@ -14,11 +13,6 @@ const foodSchema = new Schema<IFood>(
     description: { type: String, required: true },
     price: { type: Number, required: true },
     imageUrl: { type: String, required: true },
-    restaurant: {
-      type: Schema.Types.ObjectId,
-      ref: "Restaurant",
-      required: true,
-    },
   },
   { timestamps: true }
 );

@@ -6,13 +6,12 @@ export interface IRestaurant {
   foods: Types.ObjectId[];
   openingHours: string;
   isOpen: boolean;
-  categories: Types.ObjectId[];
   deliveryMethod: string;
   paymentMethods: string[];
-  rating: number;
-  reviews: {
-    comment: string;
-    rating: number;
+  rating?: number;
+  reviews?: {
+    comment?: string;
+    rating?: number;
   }[];
 }
 
@@ -29,15 +28,9 @@ const restaurantSchema = new Schema<IRestaurant>(
 
     openingHours: { type: String, required: true },
     isOpen: { type: Boolean, required: true },
-    categories: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Category",
-      },
-    ],
     deliveryMethod: { type: String, required: true },
     paymentMethods: [{ type: String, required: true }],
-    rating: { type: Number, required: true },
+    rating: { type: Number, required: false },
     reviews: [
       {
         comment: { type: String, required: false },

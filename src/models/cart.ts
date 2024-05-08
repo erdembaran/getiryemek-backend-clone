@@ -2,17 +2,16 @@ import Joi from "joi";
 import { Schema, Types, model } from "mongoose";
 
 export interface ICart {
-  user: { type: Types.ObjectId; ref: "User" };
+  user: Types.ObjectId;
   foods: {
-    type: Types.ObjectId;
-    ref: "Food";
+    food: Types.ObjectId;
     quantity: number;
   }[];
 }
 
 const cartSchema = new Schema<ICart>(
   {
-    user: { type: Schema.Types.ObjectId, ref: "User" },
+    user: { type: Schema.Types.ObjectId, ref: "User", required: true },
     foods: [
       {
         food: { type: Schema.Types.ObjectId, ref: "Food", required: true },
@@ -37,4 +36,4 @@ export function validateCart(cart: ICart) {
   return schema.validate(cart);
 }
 
-export const Cart = model<ICart>("User", cartSchema);
+export const Cart = model<ICart>("Cart", cartSchema);
