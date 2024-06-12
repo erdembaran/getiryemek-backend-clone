@@ -8,6 +8,7 @@ export interface ICart {
     quantity: number;
   }[];
 }
+1;
 
 const cartSchema = new Schema<ICart>(
   {
@@ -15,7 +16,7 @@ const cartSchema = new Schema<ICart>(
     foods: [
       {
         food: { type: Schema.Types.ObjectId, ref: "Food", required: true },
-        quantity: { type: Number, default: 0, required: true },
+        quantity: { type: Number, required: true, default: 0 },
       },
     ],
   },
@@ -24,10 +25,10 @@ const cartSchema = new Schema<ICart>(
 
 export function validateCart(cart: ICart) {
   const schema = Joi.object({
-    user: Joi.string().required(),
+    user: Joi.required(),
     foods: Joi.array().items(
       Joi.object({
-        food: Joi.string().required(),
+        food: Joi.required(),
         quantity: Joi.number().required(),
       })
     ),

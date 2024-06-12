@@ -7,8 +7,9 @@ import compression from "compression";
 import authRoutes from "./routes/auth";
 import userRoutes from "./routes/user";
 import restaurantRoutes from "./routes/restaurant";
-import kitchenRoutes from "./routes/kitchen";
+import cuisineRoutes from "./routes/cuisine";
 import cartRoutes from "./routes/cart";
+import orderRoutes from "./routes/order";
 
 const app: Express = express();
 
@@ -24,8 +25,9 @@ app.use(cors());
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/restaurant", restaurantRoutes);
-app.use("/api/kitchen", kitchenRoutes);
+app.use("/api/cuisine", cuisineRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/api/order", orderRoutes);
 
 const PORT = process.env.PORT || 3000;
 
